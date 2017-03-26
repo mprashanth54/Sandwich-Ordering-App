@@ -1,0 +1,132 @@
+<div class="page-title">                    
+    <h2><span class="fa fa-arrow-circle-o-left"></span>Items</h2>
+</div>                   
+                
+                <!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">          
+    <div class="row" ng-hide="add">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+    			<div class="panel-heading ui-draggable-handle">                                
+	        			<h3 class="panel-title">Items</h3>
+	        			
+				</div>
+	    		<div class="panel-body">
+					<div class="col-md-12" style="padding-bottom:5px;" id="DataTables_Table_0_length">
+						<ul class="panel-controls" >
+                            <li><button class="btn btn-primary" ng-click="add=!add">Add New</button></li>
+                        </ul> 
+					</div>
+	        		<table class="table datatable dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+	            		<thead>
+	                		<tr role="row"><th>Name</th><th>Category</th><th>Price</th><th>Added Date</th><th>Action</th></tr>
+	            		</thead>
+	            		<tbody>
+							<tr ng-repeat="item in items" role="row" class="odd">
+	                    		<td>{{item.name}}</td>
+	                    		<td>{{item.category}}</td>
+	                    		<td>{{item.amount}}</td>
+	                    		<td>{{item.date}}</td>
+	                    		<td><button class="btn btn-danger btn-rounded btn-sm" ng-click="deleteItem(item);"><span class="fa fa-times"></span></button></td>
+	                		</tr>
+						</tbody>
+	        		</table>
+				</div>
+    		</div>
+         </div>
+    </div>
+
+    <div class="row" ng-show="add">
+        <div class="col-md-12">
+                            
+							
+            <form class="form-horizontal" name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Add </strong>Item</h3>
+
+                    </div>
+                    <div class="panel-body">
+						<div class="alert alert-success" role="alert" ng-show="success">
+							<button type="button" class="close" data-dismiss="alert" ng-click="success=false"><span aria-hidden="true">x</span><span class="sr-only">Close</span></button>
+							<strong>Well done!</strong> You successfully added an expense. Go on add another ....
+						</div>
+                        <p>Please fill the details of the new Item</p>
+                    </div>
+                    <div class="panel-body">                                                                        
+                    <h4 ng-show="(message.length==0)?false:true" style="color:{{status}};">{{message}}</h4>
+                        <div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label">Item Name</label>
+                            <div class="col-md-6 col-xs-12">                                            
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                    <input type="text" class="form-control"/ name="Expense" ng-model="item.name" required>
+												
+                                </div>    
+								<p ng-show="userForm.Expense.$invalid && !userForm.Expense.$pristine" class="help-block">This field is required.</p>
+                                <span class="help-block">Name of the Item</span>
+                            </div>
+                        </div>
+									
+						<div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label">Amount</label>
+                            <div class="col-md-6 col-xs-12">                                            
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-rupee"></span></span>
+                                    <input type="number" class="form-control" ng-model="item.amount" name="Amount" required/>
+                                </div> 
+								<p ng-show="userForm.Amount.$invalid && !userForm.Amount.$pristine" class="help-block">Amount is required.</p>
+                                <span class="help-block">Please enter your amount here</span>
+                            </div>
+                        </div>
+                                    
+                        <div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label">Description</label>
+                            <div class="col-md-6 col-xs-12">                                            
+                                <textarea class="form-control" rows="5" ng-model="item.desc" required/></textarea>
+                                <span class="help-block">Describe .....</span>
+                            </div>
+                         </div>
+                                    
+                                    
+                        <div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label">Category</label>
+                            <div class="col-md-6 col-xs-12">                                                                                                                                        
+                                <div ng-repeat="cat in category">
+						            <input type="radio" name="Category" 
+						            	
+						                ng-value="cat.name" 
+						                ng-model="item.category" 
+						                ng-required="true" />
+						            {{ cat.name }}
+						        </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label">Type</label>
+                            <div class="col-md-6 col-xs-12">                                                                                                                                        
+                                <div ng-repeat="type in [{name:'Veg'},{name:'Non-Veg'}]">
+						            <input type="radio" name="Type" 
+						            	
+						                ng-value="type.name" 
+						                ng-model="item.type" 
+						                ng-required="true" />
+						            {{ type.name }}
+						        </div>
+                            </div>
+                        </div>
+                        
+								
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-default" ng-click="add=!add">Back</button>                                    
+                        <input type="submit" class="btn btn-primary pull-right" value="Submit" ng-disabled="(userForm.$invalid)">
+                    </div>
+                </div>
+            </form>
+                            
+        </div>
+    </div>  
+                
+</div>
+

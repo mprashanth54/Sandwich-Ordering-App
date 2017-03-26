@@ -1,0 +1,32 @@
+
+
+<div class="login-container lightmode ">
+        
+            <div class="login-box animated fadeInDown">
+                <h1 style="color:white;">Sandwich Ordering <strong>App</strong></h1>
+                <div class="login-body">
+                    <div class="login-title"><strong>Welcome</strong>, Please register</div>
+                    <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+                    <form class="form-horizontal" ng-submit="register()">
+                        <div class="form-group">
+                          <label>Username</label>
+                          <input type="text" class="form-control" name="username" ng-model="registerForm.username" required>
+                        </div>
+                        <div class="form-group">
+                          <label>Password</label>
+                            <input type="password" class="form-control" name="password" ng-model="registerForm.password" required>
+                          </div>
+                          <div>
+                            <button type="submit" class="btn btn-default" ng-disabled="disabled">Register</button>
+                          </div>
+                    </form>
+                </div>
+                <div class="login-footer">
+                    <div class="pull-left">
+                        &copy; 2017 Sandwich Ordering App
+                    </div>
+
+                </div>
+            </div>
+            
+  </div>

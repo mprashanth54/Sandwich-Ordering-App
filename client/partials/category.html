@@ -1,0 +1,39 @@
+<div class="page-title">                    
+    <h2><span class="fa fa-arrow-circle-o-left"></span>Category</h2>
+</div>                   
+                
+                <!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">          
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+    			<div class="panel-heading ui-draggable-handle">                                
+	        			<h3 class="panel-title">Category</h3>
+	        			
+				</div>
+	    		<div class="panel-body">
+	    		<h4 ng-show="(message.length==0)?false:true" style="color:{{status}};">{{message}}</h4>
+					<div class="dataTables_length" id="DataTables_Table_0_length"><div class="col-md-3"><label>Category</label></div>
+						<div class="col-md-6">
+							<input type="text" class="form-control" placeholder="Add Category" ng-model="cat" />
+						</div>
+						<div class="col-md-2" ><button class="btn btn-primary" ng-click="add()" ng-disabled="(cat.length<3)?true:false">Add</button></div>	
+					</div>
+	        		<table class="table datatable dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+	            		<thead>
+	                		<tr role="row"><th >Name</th><th>Added Date</th></tr>
+	            		</thead>
+	            		<tbody>
+							<tr ng-repeat="category in list_category" role="row" class="odd">
+	                    		<td>{{category.name}}</td>
+	                    		<td>{{category.date}}</td>
+	                		</tr>
+						</tbody>
+	        		</table>
+				</div>
+    		</div>
+         </div>
+    </div>
+                
+</div>
+

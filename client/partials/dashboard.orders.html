@@ -1,0 +1,26 @@
+<div class="col-md-12">
+<div class="panel panel-default">
+    <div class="panel-heading ui-draggable-handle">                                
+        <h3 class="panel-title">Orders</h3>
+	</div>
+    <div class="panel-body">
+	<div class="dataTables_length" id="DataTables_Table_0_length"><div class="col-md-1"><label>Order</label></div><div class="col-md-6">
+		<input type="text" class="form-control" placeholder="Search Order" ng-model="search" /></div>	
+	</div>
+        <table class="table datatable dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+            <thead>
+                <tr role="row"><th >Invoice</th><th>Item</th><th>Notes</th><th>Amount</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+				<tr ng-repeat="order in pending | filter: search" role="row" class="odd">
+                    <td>{{order.invoice}}</td>
+                    <td>{{order.item}}</td>
+                    <td>{{order.notes}}</td>
+                    <td>₹{{order.amount}}</td>
+					<td><button class="btn btn-danger btn-sm" ng-click="complete(order);">Mark as Complete</button></td>
+                </tr>
+			</tbody>
+        </table>
+	</div>
+    </div>
+</div>
