@@ -5,7 +5,8 @@ var passport = require('passport');
 var ObjectId = require('mongodb').ObjectID;
 var Invoice = require('../models/invoice.js');
 var User = require('../models/user.js');
-
+var Category = require('../models/category.js');
+var Item = require('../models/item.js');
 
 function isLoggedin(req, res, next){
   if(req.user && req.user.role =='user'){
@@ -15,6 +16,60 @@ function isLoggedin(req, res, next){
     res.redirect('login');
   }
 }
+
+
+function settingUp(){
+
+User.find({role:'admin'},function(err,docs){
+  if(docs.length == 0){
+    password='prashanth';
+    User.register(new User({ username:'prashanth', role:'admin' }),
+      password, function(err, account) {
+      if (err) {
+        return res.status(500).json({
+          err: err
+        });
+      }
+      passport.authenticate('local')(req, res, function () {
+        console.log("Prashanth User Created");
+        });
+      });
+  }
+})
+
+Category.find(function(err,docs){
+  if(docs.length == 0){
+    var cat = new Category({name:"Classic Sandwich", date:new Date()});
+    var cat2 = new Category({name:"Supreme Sandwich", date:new Date()});
+    var cat3 = new Category({name:"Exotic Sandwich", date:new Date()});
+    cat.save(function(err){});
+    cat2.save(function(err){});
+    cat3.save(function(err){});
+
+    var item = new Item({name:"Cl Sandwich 1",amount:80, category:"Classic Sandwich",description:"Cheesy Juicy Sandwich",type:"Veg", date:new Date()});
+    var item2 = new Item({name:"Cl Sandwich 2",amount:70, category:"Classic Sandwich",description:"Cheesy Juicy Sandwich",type:"Veg", date:new Date()});
+    var item3 = new Item({name:"Cl Sandwich 3",amount:100, category:"Classic Sandwich",description:"Cheesy Juicy Sandwich",type:"Non-Veg", date:new Date()});
+    var item4 = new Item({name:"Sp Sandwich 1",amount:100, category:"Supreme Sandwich",description:"Cheesy Juicy Sandwich",type:"Veg", date:new Date()});
+    var item5 = new Item({name:"Sp Sandwich 1",amount:120, category:"Supreme Sandwich",description:"Cheesy Juicy Sandwich",type:"Non-Veg", date:new Date()});
+    var item6 = new Item({name:"Ex Sandwich 1",amount:150, category:"Exotic Sandwich",description:"Cheesy Juicy Sandwich",type:"Veg", date:new Date()});
+    var item7 = new Item({name:"Ex Sandwich 2",amount:180, category:"Exotic Sandwich",description:"Cheesy Juicy Sandwich",type:"Non-Veg", date:new Date()});
+
+    item.save(function(err){});
+    item2.save(function(err){});
+    item3.save(function(err){});
+    item4.save(function(err){});
+    item5.save(function(err){});
+    item6.save(function(err){});
+    item7.save(function(err){});
+
+  }
+})
+
+}
+
+
+
+
 
 router.post('/register', function(req, res) {
   User.register(new User({ username: req.body.username, role:'user' }),
