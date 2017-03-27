@@ -11,7 +11,7 @@ var passport = require('passport');
 var localStrategy = require('passport-local' ).Strategy;
 
 // mongoose
-mongoose.connect('mongodb://localhost/sandwich-ordering-app');
+mongoose.connect('mongodb://prashanth:prashanth@ds143330.mlab.com:43330/sandwich-ordering-app');
 
 // user schema/model
 var User = require('./models/user.js');
