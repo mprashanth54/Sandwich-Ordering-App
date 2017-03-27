@@ -143,7 +143,7 @@ angular.module('myApp').factory('CategoryService',
     });
 
     function getCategory() {
-      return $http.get('/admin/category')
+      return $http.get('/common/category')
       // handle success
       .success(function (data) {
         return data;
@@ -189,7 +189,7 @@ angular.module('myApp').factory('ItemsService',
     });
 
     function getItems() {
-      return $http.get('/admin/items')
+      return $http.get('/common/items')
       // handle success
       .success(function (data) {
         return data;
@@ -245,5 +245,214 @@ angular.module('myApp').factory('ItemsService',
       return deferred.promise;
 
     }
+
+}]);
+
+angular.module('myApp').factory('InvoiceService',
+  ['$q', '$timeout', '$http',
+  function ($q, $timeout, $http) {
+
+    // return available functions for use in the controllers
+    return ({
+      newInvoice: newInvoice,
+      getInvoiceOne: getInvoiceOne,
+      getInvoice : getInvoice,
+      getInvoicePlaced: getInvoicePlaced,
+      complete:complete,
+      getInvoiceUser, getInvoiceUser,
+      getAllInvoices:getAllInvoices
+    });
+
+    function getInvoice() {
+      return $http.get('/admin/invoices')
+      // handle success
+      .success(function (data) {
+        return data;
+      });
+      
+    }
+
+    function getInvoiceOne(item) {
+
+      // create a new instance of deferred
+      var deferred = $q.defer();
+      // send a post request to the server
+      $http.get('/user/invoices/'+ item)
+        // handle success
+        .success(function (data, status) {
+          deferred.resolve(data[0]);
+
+        })
+        // handle error
+        .error(function (data) {
+          deferred.reject();
+        });
+
+      // return promise object
+      return deferred.promise;
+
+    }
+
+
+    function getInvoiceUser() {
+
+      // create a new instance of deferred
+      var deferred = $q.defer();
+      // send a post request to the server
+      $http.get('/user/invoices_user')
+        // handle success
+        .success(function (data, status) {
+          deferred.resolve(data);
+
+        })
+        // handle error
+        .error(function (data) {
+          deferred.reject();
+        });
+
+      // return promise object
+      return deferred.promise;
+
+    }
+
+
+    function getAllInvoices() {
+
+      // create a new instance of deferred
+      var deferred = $q.defer();
+      // send a post request to the server
+      $http.get('/admin/invoices_all')
+        // handle success
+        .success(function (data, status) {
+          deferred.resolve(data);
+
+        })
+        // handle error
+        .error(function (data) {
+          deferred.reject();
+        });
+
+      // return promise object
+      return deferred.promise;
+
+    }
+
+    function getInvoicePlaced(item) {
+
+      // create a new instance of deferred
+      var deferred = $q.defer();
+      // send a post request to the server
+      $http.get('/admin/invoices_placed')
+        // handle success
+        .success(function (data, status) {
+          deferred.resolve(data);
+
+        })
+        // handle error
+        .error(function (data) {
+          deferred.reject();
+        });
+
+      // return promise object
+      return deferred.promise;
+
+    }
+
+
+    function newInvoice(item) {
+
+      // create a new instance of deferred
+      var deferred = $q.defer();
+      console.log(item);
+      // send a post request to the server
+      $http.post('/user/invoices',item)
+        // handle success
+        .success(function (data, status) {
+          console.log(data);
+          if(status === 200 && data.status){
+            deferred.resolve(data.invoice_no);
+          } else {
+            deferred.reject();
+          }
+        })
+        // handle error
+        .error(function (data) {
+          deferred.reject();
+        });
+
+      // return promise object
+      return deferred.promise;
+
+    }
+
+
+    function complete(item) {
+
+      // create a new instance of deferred
+      var deferred = $q.defer();
+      console.log(item);
+      // send a post request to the server
+      $http.put('/admin/invoices',item)
+        // handle success
+        .success(function (data, status) {
+          console.log(data);
+          if(status === 200 && data.status){
+            deferred.resolve();
+          } else {
+            deferred.reject();
+          }
+        })
+        // handle error
+        .error(function (data) {
+          deferred.reject();
+        });
+
+      // return promise object
+      return deferred.promise;
+
+    }
+
+
+
+}]);
+
+angular.module('myApp').factory('HeaderService',
+  ['$q', '$timeout', '$http',
+  function ($q, $timeout, $http) {
+
+    // return available functions for use in the controllers
+    return ({
+      getPendingCount: getPendingCount,
+      getUserCount: getUserCount,
+    });
+
+    function getPendingCount() {
+      var deferred = $q.defer();
+      return $http.get('/admin/items_count')
+      // handle success
+      .success(function (data) {
+        deferred.resolve(data);
+      });
+
+      return deferred.promise;
+      
+    }
+
+    function getUserCount() {
+      var deferred = $q.defer();
+      // create a new instance of deferred
+      // send a post request to the server
+      $http.get('/admin/user_count')
+        // handle success
+        .success(function (data) {
+          deferred.resolve(data);
+        })
+        .error(function(data){
+          deferred.reject();
+        })
+        return deferred.promise;
+
+    }
+
 
 }]);

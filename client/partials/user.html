@@ -1,14 +1,13 @@
 <div id="header">
-	<div class="wrap group">
+	<div class="wrap group" ng-init="start()">
 				<div class="head-wrap group">
 				<img id="exo_logo" alt="Logo Exosource" style="height:50px;width:50px;padding-top:0px;" src="sandwich2.jpg"><h1 style="margin-top: 0px;padding-top:10px;">Sandwich Ordering App</h1>
 
 					<nav>
 						
 						<ul>
-							<li><a data-anchor="what-we-do" rel="" ui-sref='user'>Items</a></li>
-							<li><a data-anchor="our-method" rel="#!notre-methode" ui-sref='user' >Status</a></li>
-							<li><a data-anchor="benefits" rel="#!avantages" ui-sref='user'>Order</a></li>
+							<li><a data-anchor="what-we-do" rel="" ui-sref='user.items'>Items</a></li>
+							<li><a data-anchor="our-method" rel="#!notre-methode" ui-sref='user.status' >Status</a></li>
 							<li class="xn-icon-button pull-right" ng-controller="logoutController">
 		                        <a class="mb-control" data-box="#mb-signout" ng-click="logout()"><span class="fa fa-sign-out" style="font-size:20px;"></span></a>                        
 		                    </li>
@@ -18,3 +17,4 @@
 	</div> <!-- .wrap < header -->
 </div>
 
+<div ui-view class="body-full-height" style="padding-top:80px;"></div>

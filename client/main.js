@@ -14,6 +14,25 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     .state('user', {
       url:'/user',
       templateUrl: 'partials/user.html',
+      controller:'userCtrl',
+      access: {restricted: true, access:'user'}
+    })
+    .state('user.items', {
+      url:'/items',
+      templateUrl: 'partials/user.items.html',
+      controller:'userItemsCtrl',
+      access: {restricted: true, access:'user'}
+    })
+    .state('user.invoice', {
+      url:'/invoice/:invoice_no',
+      templateUrl: 'partials/user.invoice.html',
+      controller:'userInvoiceCtrl',
+      access: {restricted: true, access:'user'}
+    })
+    .state('user.status', {
+      url:'/status',
+      templateUrl: 'partials/user.status.html',
+      controller:'userStatusCtrl',
       access: {restricted: true, access:'user'}
     })
     .state('login', {

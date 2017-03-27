@@ -2,6 +2,12 @@ angular.module('myApp').controller('loginController',
   ['$scope', '$state', 'AuthService',
   function ($scope, $state, AuthService) {
 
+    $scope.Register = function(){
+      event.preventDefault();
+      $state.go('register');
+    }
+
+
     $scope.login = function () {
 
       // initial values

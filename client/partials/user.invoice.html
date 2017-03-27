@@ -1,0 +1,59 @@
+        <form class="form-horizontal">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" ><strong>Invoice</strong></h3>
+
+                    </div>
+                    <div class="panel-body">
+
+                        <p>Invoice for your order</p>
+                    </div>
+                    <div class="panel-body">                                                                        
+                        <div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label" style="padding-top: 0px;">Invoice No.</label>
+                            <div class="col-md-6 col-xs-12">                                            
+                                <div class="input-group">
+                                    <p>{{invoice._id}}</p>			
+                                </div>    
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label" style="padding-top: 0px;">Status</label>
+                            <div class="col-md-6 col-xs-12">                                            
+                                <div class="input-group">
+                                    <p>{{invoice.status}}</p>  
+                                </div> 
+                            </div>
+                        </div>
+									
+						<div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label" style="padding-top: 0px;">Amount</label>
+                            <div class="col-md-6 col-xs-12">                                            
+                                <div class="input-group">
+                                    <p>{{invoice.amount}}</p>  
+                                </div> 
+                            </div>
+                        </div>
+                                    
+                        <div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label" style="padding-top: 0px;">Description</label>
+                            <div class="col-md-6 col-xs-12">                                            
+                                <div class="input-group">
+                                    <p>{{invoice.description}}</p>  
+                                </div> 
+                            </div>
+                        </div>
+                                    
+                                    
+                        <div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label" style="padding-top: 0px;">Category</label>
+                            <div class="col-md-6 col-xs-12">                                            
+                                <div class="input-group">
+                                    <p>{{invoice.category}}</p>  
+                                </div> 
+                            </div>
+                        </div>                        	
+                    </div>
+             
+                </div>
+          </form>

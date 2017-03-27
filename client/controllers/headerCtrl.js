@@ -1,7 +1,28 @@
 
 angular.module('myApp').controller('headerCtrl',
-  ['$http','$scope','$rootScope', '$location','$timeout','$filter',
-  function ($http,$scope,$rootScope, $location,$timeout,$filter) {
+  ['$http','$scope','HeaderService','$timeout',
+  function ($http,$scope,HeaderService,$timeout) {
+  	var socket = io.connect();
+  	$scope.pending=0;
+	$scope.users=0;
+
+  	var refresh = function(){
+  		HeaderService.getPendingCount().then(function(response){
+  			console.log(response.data.length);
+  			$scope.pending = response.data.length;
+  		});
+  		HeaderService.getUserCount().then(function(response){
+  			console.log(response);
+  			$scope.users = response.length;
+  		});
+
+  	}
+  	refresh();
+
+  	socket.on('broadcast', function(data){
+	  	console.log("Inside broadcast");
+	  	refresh();
+ 	 });
 	  
 	 $scope.title="Dashboard"; 
 	  
@@ -57,53 +78,8 @@ angular.module('myApp').controller('headerCtrl',
 	
 	******************************/
 	
-	$scope.pending=0;
-	$scope.revenue=0;
-	$scope.users=0;
-	
-	var refresh=function(){
 
-		console.log("Inside Header Refresh");
-	}
 	
-	refresh();
-	$rootScope.$on('DeleteEvent', function(event, data){
-            refresh();
-        });
-	
-	/*****************************
-	
-	End of Daily Widget
-	
-	******************************/
-	
-	
-	/*****************************
-	
-	Start of Weekly Widget
-	
-	******************************/
-	
-	
-	/*****************************
-	
-	End of Weekly Widget
-	
-	******************************/
-	
-	
-	/*****************************
-	
-	Start of Monthly Widget
-	
-	******************************/
-	
-	
-	/*****************************
-	
-	End of Monthly Widget
-	
-	******************************/
-	
+
 
 }]);
