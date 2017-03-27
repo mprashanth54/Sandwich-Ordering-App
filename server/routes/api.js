@@ -20,23 +20,6 @@ function isLoggedin(req, res, next){
 
 function settingUp(){
 
-User.find({role:'admin'},function(err,docs){
-  if(docs.length == 0){
-    password='prashanth';
-    User.register(new User({ username:'prashanth', role:'admin' }),
-      password, function(err, account) {
-      if (err) {
-        return res.status(500).json({
-          err: err
-        });
-      }
-      passport.authenticate('local')(req, res, function () {
-        console.log("Prashanth User Created");
-        });
-      });
-  }
-})
-
 Category.find(function(err,docs){
   if(docs.length == 0){
     var cat = new Category({name:"Classic Sandwich", date:new Date()});
@@ -72,7 +55,7 @@ settingUp();
 
 
 router.post('/register', function(req, res) {
-  User.register(new User({ username: req.body.username, role:'user' }),
+  User.register(new User({ username: req.body.username, role:req.body.role }),
     req.body.password, function(err, account) {
     if (err) {
       return res.status(500).json({
