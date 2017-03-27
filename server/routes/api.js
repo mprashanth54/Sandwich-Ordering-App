@@ -67,7 +67,7 @@ Category.find(function(err,docs){
 
 }
 
-
+settingUp();
 
 
 
