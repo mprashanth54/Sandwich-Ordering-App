@@ -4,6 +4,8 @@ angular.module('myApp').controller('userItemsCtrl',
   function ($state,$scope,ItemsService,CategoryService,InvoiceService) {
     var socket = io.connect();
   	$scope.category = [];
+    $scope.sel_item=[];
+    $scope.add=false;
   	$scope.items = [];
   	CategoryService.getCategory().then(function(response){
   		$scope.category = response.data;
@@ -12,7 +14,20 @@ angular.module('myApp').controller('userItemsCtrl',
   		$scope.items = response.data;
   	})
 
-  	$scope.order = function(order){
+    $scope.selectedOrder = function(item){
+      $scope.add=!$scope.add;
+      $scope.sel_item=item;
+    }
+
+    $scope.check
+    $scope.back = function(){
+      event.preventDefault();
+      $scope.add=!$scope.add;
+      $scope.sel_item=[];
+    }
+
+  	$scope.order = function(){
+      var order = $scope.sel_item;
   		console.log(order);
   		InvoiceService.newInvoice(order).then(function(response){
   			console.log(response);

@@ -4,8 +4,8 @@
 </div>                   
 </div>             
                 <!-- PAGE CONTENT WRAPPER -->
-<div class=" page-content-wrap" style="background-color:white">     
-	<div class="container">     
+<div class=" page-content-wrap" style="background-color:white" >     
+	<div class="container" ng-hide="add">     
     <div class="row">
         <div class="col-md-12">
         <div ng-repeat="cat in category">
@@ -22,7 +22,8 @@
 		    			<img src="sandwiches-1.jpg" style="width: 220px;">
 	                    <p>{{item.description}}</p>
 	                    <p><span class="fa fa-inr"></span><strong>{{item.amount}}</strong></p>
-	                    <button ng-class="(item.type =='Veg')?'col-md-12 fileinput btn-success':'col-md-12 fileinput btn-danger'" ng-click="order(item)">Order Now</button>
+	                    <img ng-src="{{item.type=='Veg'?('veg.png'):('non-veg.jpeg')}}" style="margin-bottom:5px;" width=20px height=20px>
+	                    <button class="col-md-12 btn btn-primary" ng-click="selectedOrder(item);">Order Now</button>
 					</div>
 	    		</div>
 			</div> 
@@ -31,5 +32,67 @@
     </div>
                 
 </div>
-</div>
 
+
+<div class="container" style="padding-top:40px;">
+
+
+    <div class="row" ng-show="add">
+        <div class="col-md-12">
+                            
+							
+            <form class="form-horizontal" name="userForm" ng-submit="order()" novalidate>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Confim your </strong>Order</h3>
+
+                    </div>
+                    <div class="panel-body">                                                                        
+                        <div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label">Item Name</label>
+                            <div class="col-md-6 col-xs-12">                                            
+                                <div class="input-group">
+                                    <p class="form-control">{{sel_item.name}}</p>
+												
+                                </div>    
+                            </div>
+                        </div>
+									
+						<div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label">Amount</label>
+                            <div class="col-md-6 col-xs-12">                                            
+                                <div class="input-group">
+                                    <p class="form-control">{{sel_item.amount}}</p>
+                                </div> 
+								
+                            </div>
+                        </div>
+                                    
+                        <div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label">Description</label>
+                            <div class="col-md-6 col-xs-12">                                            
+                                <p class="form-control">{{sel_item.type}}</p>
+                            </div>
+                         </div>
+                                    
+                                    
+                        <div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label">Category</label>
+                            <div class="col-md-6 col-xs-12">                                            
+                                <p class="form-control">{{sel_item.category}}</p>
+                            </div>
+                         </div>
+                        
+								
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-default" ng-click="back()">Back</button>                                    
+                        <input type="submit" class="btn btn-primary pull-right" value="Confirm" >
+                    </div>
+                </div>
+            </form>
+                            
+        </div>
+    </div>  
+</div>
+</div>

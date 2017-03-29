@@ -10,4 +10,12 @@ angular.module('myApp').controller('userStatusCtrl',
   		})
   	}
   	refresh();
+    var socket = io.connect();
+    socket.on('broadcast', function(obj) {
+      console.log(obj);
+      if($state.current.name =='user.status'){
+        refresh();
+      }
+    
+  });
 }]);

@@ -21,7 +21,7 @@
                             <label class="col-md-3 col-xs-12 control-label" style="padding-top: 0px;">Status</label>
                             <div class="col-md-6 col-xs-12">                                            
                                 <div class="input-group">
-                                    <p>{{invoice.status}}</p>  
+                                    <p ng-class="(invoice.status =='Placed')?'Red':'Green'">{{invoice.status}}</p>  
                                 </div> 
                             </div>
                         </div>

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Sandwich Ordering App seperate interface for user and admin",
   "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "author": "Prashanth Mogali",
   "license": "MIT",
   "dependencies": {
@@ -22,11 +25,5 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.0.0",
     "socket.io": "^1.7.3"
-  },
-  "engines":{
-	"node":"4.5.0"
-  },
-  "scripts": {
-    "start": "server/server.js"
   }
 }

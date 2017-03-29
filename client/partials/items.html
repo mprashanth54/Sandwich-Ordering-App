@@ -73,9 +73,9 @@
                             <div class="col-md-6 col-xs-12">                                            
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-rupee"></span></span>
-                                    <input type="number" class="form-control" ng-model="item.amount" name="Amount" required/>
+                                    <input type="number" class="form-control" ng-model="item.amount" name="Amount" ng-min="0" required/>
                                 </div> 
-								<p ng-show="userForm.Amount.$invalid && !userForm.Amount.$pristine" class="help-block">Amount is required.</p>
+								<p ng-show="userForm.Amount.$invalid && !userForm.Amount.$pristine" class="help-block">Amount is required and cannot be negative.</p>
                                 <span class="help-block">Please enter your amount here</span>
                             </div>
                         </div>
